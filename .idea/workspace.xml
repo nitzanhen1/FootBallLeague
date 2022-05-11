@@ -5,22 +5,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2f8ae5e6-bf86-45ab-8411-ce458551bb0c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_beust_jcommander_1_78.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_findbugs_jsr305_3_0_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_13.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_2_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_testng_testng_7_5.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_webjars_jquery_3_5_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FootBallLeagueApp/src/test/java/FootballLeague/domain/demoDomainTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/0151fddc-0ad6-4a22-9827-f2271bac9ab7.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/0151fddc-0ad6-4a22-9827-f2271bac9ab7.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FootBallLeagueApp/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/FootBallLeagueApp/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FootBallLeagueApp/src/main/java/FootballLeague/controller/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/FootBallLeagueApp/src/main/java/FootballLeague/Service/DemoService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FootBallLeagueApp/src/main/java/FootballLeague/entity/EventEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FootBallLeagueApp/src/main/java/FootballLeague/entity/EventLogEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FootBallLeagueApp/src/main/java/FootballLeague/entity/GameEventEnum.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FootBallLeagueApp/src/main/java/FootballLeague/entity/LeagueEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FootBallLeagueApp/src/main/java/FootballLeague/entity/LeagueInSeasonEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FootBallLeagueApp/src/main/java/FootballLeague/entity/Log.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FootBallLeagueApp/src/main/java/FootballLeague/entity/MatchEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FootBallLeagueApp/src/main/java/FootballLeague/entity/MatchPolicyEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FootBallLeagueApp/src/main/java/FootballLeague/entity/RankingPolicyEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FootBallLeagueApp/src/main/java/FootballLeague/entity/SeasonEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FootBallLeagueApp/src/main/java/FootballLeague/entity/TeamEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FootBallLeagueApp/src/main/java/FootballLeague/Service/DemoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/FootBallLeagueApp/src/main/java/FootballLeague/Service/DemoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FootBallLeagueApp/src/main/java/FootballLeague/entity/CoachEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/FootBallLeagueApp/src/main/java/FootballLeague/entity/CoachEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FootBallLeagueApp/src/main/java/FootballLeague/entity/FanEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/FootBallLeagueApp/src/main/java/FootballLeague/entity/FanEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FootBallLeagueApp/src/main/java/FootballLeague/entity/PlayerEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/FootBallLeagueApp/src/main/java/FootballLeague/entity/PlayerEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FootBallLeagueApp/src/main/java/FootballLeague/entity/RefereeEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/FootBallLeagueApp/src/main/java/FootballLeague/entity/RefereeEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FootBallLeagueApp/src/main/java/FootballLeague/entity/RoleEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/FootBallLeagueApp/src/main/java/FootballLeague/entity/RoleEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FootBallLeagueApp/src/main/java/FootballLeague/entity/SubscriberEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/FootBallLeagueApp/src/main/java/FootballLeague/entity/SubscriberEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FootBallLeagueApp/src/main/java/FootballLeague/entity/SystemManagerEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/FootBallLeagueApp/src/main/java/FootballLeague/entity/SystemManagerEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FootBallLeagueApp/src/main/java/FootballLeague/entity/TeamManagerEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/FootBallLeagueApp/src/main/java/FootballLeague/entity/TeamManagerEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FootBallLeagueApp/src/main/java/FootballLeague/entity/TeamOwnerEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/FootBallLeagueApp/src/main/java/FootballLeague/entity/TeamOwnerEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FootBallLeagueApp/src/main/java/FootballLeague/entity/UnionRepresentativeEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/FootBallLeagueApp/src/main/java/FootballLeague/entity/UnionRepresentativeEntity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FootBallLeagueApp/src/main/java/FootballLeague/entity/UserEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/FootBallLeagueApp/src/main/java/FootballLeague/entity/UserEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FootBallLeagueApp/src/main/java/FootballLeague/service/DemoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/FootBallLeagueApp/src/main/java/FootballLeague/domain/DemoDomain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FootBallLeagueApp/src/test/java/FootballLeague/service/demoServiceTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +49,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="28tO4QGozp4b9Y7ih1VCa8U8elY" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -130,6 +142,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="FootBallLeagueApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="FootBallLeague" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="FootballLeague.FootBallLeagueApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="FootBallLeagueApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="FootBallLeagueApp" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="FootballLeague.FootBallLeagueApplication" />
@@ -138,6 +157,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="JUnit.demoDomainTest" />
+      <item itemvalue="JUnit.demoDomainTest.printUser" />
+      <item itemvalue="Spring Boot.FootBallLeagueApplication" />
+      <item itemvalue="Spring Boot.FootBallLeagueApplication (1)" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.demoDomainTest" />
@@ -160,5 +185,16 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

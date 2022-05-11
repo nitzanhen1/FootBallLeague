@@ -6,15 +6,17 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="FootBallLeagueApp" />
+        <module name="FootBallLeague" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="FootBallLeague" target="11" />
       <module name="FootBallLeagueApp" target="11" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="FootBallLeague" options="-parameters" />
       <module name="FootBallLeagueApp" options="-parameters" />
     </option>
   </component>

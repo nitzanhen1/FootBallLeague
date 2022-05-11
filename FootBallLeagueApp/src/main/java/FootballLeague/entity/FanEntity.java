@@ -1,4 +1,4 @@
 package FootballLeague.entity;
 
-public class FanEntity {
+public class FanEntity extends RoleEntity{
 }

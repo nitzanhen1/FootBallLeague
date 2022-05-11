@@ -4,12 +4,11 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name="unionRepresentative")
-public class UnionRepresentativeEntity extends RoleEntity{
+@Table(name="league")
+public class LeagueEntity {
 
-    @OneToMany
-    private Set<RefereeEntity> refereesAssigned;
-
+    @Id
+    private String name;
     @OneToMany
     private Set<LeagueInSeasonEntity> leagueInSeason;
 }

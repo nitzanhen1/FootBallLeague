@@ -1,4 +1,4 @@
 package FootballLeague.entity;
 
-public class SystemManagerEntity {
+public class SystemManagerEntity extends RoleEntity{
 }
