@@ -1,27 +1,25 @@
-package FootballLeague.controller;
+package FootballLeague.Service;
 
-import FootballLeague.entity.UserEntity;
-import FootballLeague.service.DemoService;
+import FootballLeague.domain.DemoDomain;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class TestController {
+public class DemoService {
 
     @Autowired
-    DemoService demoService;
+    DemoDomain demoDomain;
 
     @RequestMapping("/test/{id}")
     public String getId(@PathVariable String id){
-        return demoService.printUser(id).getId();
+        return demoDomain.findUser(id).getId();
     }
 
     @RequestMapping("/test")
     public String hi(){
         return "hi";
-        //return demoService.printUser(id);
     }
 
 

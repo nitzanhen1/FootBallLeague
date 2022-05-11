@@ -4,7 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2f8ae5e6-bf86-45ab-8411-ce458551bb0c" name="Default Changelist" comment="" />
+    <list default="true" id="2f8ae5e6-bf86-45ab-8411-ce458551bb0c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_beust_jcommander_1_78.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_findbugs_jsr305_3_0_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_13.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_2_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_testng_testng_7_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_webjars_jquery_3_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FootBallLeagueApp/src/test/java/FootballLeague/domain/demoDomainTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/0151fddc-0ad6-4a22-9827-f2271bac9ab7.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/0151fddc-0ad6-4a22-9827-f2271bac9ab7.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FootBallLeagueApp/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/FootBallLeagueApp/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FootBallLeagueApp/src/main/java/FootballLeague/controller/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/FootBallLeagueApp/src/main/java/FootballLeague/Service/DemoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FootBallLeagueApp/src/main/java/FootballLeague/entity/UserEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/FootBallLeagueApp/src/main/java/FootballLeague/entity/UserEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FootBallLeagueApp/src/main/java/FootballLeague/service/DemoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/FootBallLeagueApp/src/main/java/FootballLeague/domain/DemoDomain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FootBallLeagueApp/src/test/java/FootballLeague/service/demoServiceTest.java" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,19 +35,25 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="28tO4QGozp4b9Y7ih1VCa8U8elY" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="ExpandSpringBootJavaOptionsPanel" value="true" />
     <property name="RequestMappingsPanelOrder0" value="0" />
     <property name="RequestMappingsPanelOrder1" value="1" />
     <property name="RequestMappingsPanelWidth0" value="75" />
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
@@ -42,6 +65,10 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.repository.indices" />
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
@@ -58,7 +85,7 @@
       <recent name="domain.repository" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.demoDomainTest">
     <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -72,16 +99,31 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="demoServiceTest.printUser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="demoDomainTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="FootBallLeagueApp" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="FootballLeague.service.*" />
+          <option name="PATTERN" value="FootballLeague.domain.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="FootballLeague.service" />
-      <option name="MAIN_CLASS_NAME" value="FootballLeague.service.demoServiceTest" />
+      <option name="PACKAGE_NAME" value="FootballLeague.domain" />
+      <option name="MAIN_CLASS_NAME" value="FootballLeague.domain.demoDomainTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="demoDomainTest.printUser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="FootBallLeagueApp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="FootballLeague.domain.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="FootballLeague.domain" />
+      <option name="MAIN_CLASS_NAME" value="FootballLeague.domain.demoDomainTest" />
       <option name="METHOD_NAME" value="printUser" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
@@ -98,7 +140,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.demoServiceTest.printUser" />
+        <item itemvalue="JUnit.demoDomainTest" />
+        <item itemvalue="JUnit.demoDomainTest.printUser" />
       </list>
     </recent_temporary>
   </component>
@@ -111,7 +154,7 @@
       <option name="presentableId" value="Default" />
       <updated>1652032223629</updated>
       <workItem from="1652032224781" duration="5552000" />
-      <workItem from="1652038012582" duration="6215000" />
+      <workItem from="1652038012582" duration="15995000" />
     </task>
     <servers />
   </component>

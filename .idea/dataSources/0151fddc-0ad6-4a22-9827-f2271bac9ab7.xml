@@ -904,12 +904,23 @@ SELECT|sys.sys_config
 </ObjectGrants>
     </user>
     <table id="283" parent="2" name="user"/>
-    <column id="284" parent="283" name="id">
+    <table id="284" parent="2" name="user_entity"/>
+    <column id="285" parent="283" name="id">
       <Position>1</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="285" parent="283" name="PRIMARY">
+    <key id="286" parent="283" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="287" parent="284" name="id">
+      <Position>1</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="288" parent="284" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>

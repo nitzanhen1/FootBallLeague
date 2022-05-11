@@ -1,4 +1,4 @@
-package FootballLeague.service;
+package FootballLeague.domain;
 
 import FootballLeague.entity.UserEntity;
 import FootballLeague.repository.UserRepository;
@@ -6,15 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class DemoService {
+public class DemoDomain {
 
     @Autowired
     private UserRepository userRepository;
 
-    public DemoService() {
+    public DemoDomain() {
     }
 
-    public UserEntity printUser(String id){
+    public UserEntity findUser(String id){
         return userRepository.findOneById(id);
     }
 }
