@@ -1,5 +1,7 @@
 package FootballLeague.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -7,9 +9,11 @@ import java.util.Set;
 @Table(name="unionRepresentative")
 public class UnionRepresentativeEntity extends RoleEntity{
 
-    @OneToMany
+    @JsonIgnore
+    @OneToMany(mappedBy = "unionRepresentativeAssigner")
     private Set<RefereeEntity> refereesAssigned;
 
-    @OneToMany
+    @JsonIgnore
+    @OneToMany(mappedBy = "unionRepresentativeCreator")
     private Set<LeagueInSeasonEntity> leagueInSeason;
 }

@@ -16,9 +16,12 @@ public class EventEntity {
     @Enumerated(EnumType.STRING)
     private GameEventEnum matchEvent;
     private String description;
-    @ManyToOne
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "referee_id", referencedColumnName = "roleId")
     private RefereeEntity refereeCreator;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "event_log_id", referencedColumnName = "eventLogId")
     private EventLogEntity eventLog;
 
 

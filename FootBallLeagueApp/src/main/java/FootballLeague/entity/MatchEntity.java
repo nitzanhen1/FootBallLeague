@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.Set;
 
 @Entity
-@Table(name="match")
+@Table(name="matches")
 public class MatchEntity {
 
     @Id
@@ -15,17 +15,27 @@ public class MatchEntity {
     private int homeTeamScore;
     private int awayTeamScore;
     private String stadium;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "event_log_id", referencedColumnName = "eventLogId")
     private EventLogEntity eventLog;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "main_referee_id", referencedColumnName = "roleId")
     private RefereeEntity mainReferee;
     @ManyToMany
-    private Set<RefereeEntity> assistantReferee;
-    @ManyToOne
+    @JoinTable(
+            name="assistant_referees_in_match",
+            joinColumns = @JoinColumn(name = "matchId"),
+            inverseJoinColumns = @JoinColumn(name = "refereeId")
+    )
+    private Set<RefereeEntity> assistantReferees;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "home_team", referencedColumnName = "teamName")
     private TeamEntity homeTeam;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "away_team", referencedColumnName = "teamName")
     private TeamEntity awayTeam;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "league_in_season", referencedColumnName = "id")
     private LeagueInSeasonEntity leagueInSeason;
 
 }

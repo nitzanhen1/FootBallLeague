@@ -18,7 +18,7 @@ public class demoDomainTest {
     @Test
     public void printUser() {
 
-        assertEquals(DemoDomain.findUser("1").getId(),"1");
-        assertNotEquals(DemoDomain.findUser("1").getId(),"2");
+        assertEquals(DemoDomain.findUser("1").getUserId(),"1");
+        assertNotEquals(DemoDomain.findUser("1").getUserId(),"2");
     }
 }

@@ -1,5 +1,6 @@
 package FootballLeague.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.context.annotation.Primary;
 
 import javax.persistence.*;
@@ -10,9 +11,13 @@ import java.util.Set;
 public class EventLogEntity {
 
     @Id
-    @OneToOne
+    private String eventLogId;
+    @JsonIgnore
+    @OneToOne(mappedBy = "eventLog")
     private MatchEntity match;
-    @OneToMany
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "eventLog")
     private Set<EventEntity> events;
 
 

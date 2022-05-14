@@ -1,5 +1,7 @@
 package FootballLeague.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -8,14 +10,19 @@ import java.util.Set;
 public class RefereeEntity extends RoleEntity{
 
     private String qualification;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "assigner_id", referencedColumnName = "roleId")
     private UnionRepresentativeEntity unionRepresentativeAssigner;
-    @OneToMany
+    @JsonIgnore
+    @OneToMany(mappedBy = "mainReferee")
     private Set<MatchEntity> matchesAsMainReferee;
-    @ManyToMany
+    @JsonIgnore
+    @ManyToMany(mappedBy = "assistantReferees")
     private Set<MatchEntity> matchesAsAssistantReferee;
-    @OneToMany
+    @JsonIgnore
+    @OneToMany(mappedBy = "refereeCreator")
     private Set<EventEntity> events;
-    @ManyToMany
+    @JsonIgnore
+    @ManyToMany(mappedBy = "referees")
     private Set<LeagueInSeasonEntity> leagueInSeason;
 }

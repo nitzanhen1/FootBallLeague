@@ -1,4 +1,6 @@
 package FootballLeague.entity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -8,6 +10,11 @@ public class SeasonEntity {
 
     @Id
     private int year;
-    @OneToMany
+    @JsonIgnore
+    @OneToMany(mappedBy = "season")
     private Set<LeagueInSeasonEntity> leagueInSeason;
+
+    public int getYear() {
+        return year;
+    }
 }

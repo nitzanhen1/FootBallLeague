@@ -7,8 +7,10 @@ import java.util.ArrayList;
 @Table(name="teamManager")
 public class TeamManagerEntity extends RoleEntity{
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "team_name", referencedColumnName = "teamName")
     private TeamEntity team;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "assigner_team_owner_id", referencedColumnName = "roleId")
     private TeamOwnerEntity assignerTeamOwner;
 }

@@ -1,7 +1,7 @@
 package FootballLeague.entity;
 import javax.persistence.*;
 
-@Entity
+//@Entity
 @Table(name="rankingPolicy")
 public class RankingPolicyEntity {
 }
