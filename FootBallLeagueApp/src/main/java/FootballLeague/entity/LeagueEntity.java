@@ -18,4 +18,24 @@ public class LeagueEntity {
     public String getName() {
         return name;
     }
+
+    public LeagueEntity(String name, Set<LeagueInSeasonEntity> leagueInSeason) {
+        this.name = name;
+        this.leagueInSeason = leagueInSeason;
+    }
+
+    public LeagueEntity() {
+    }
+
+    public Set<LeagueInSeasonEntity> getLeagueInSeason() {
+        return leagueInSeason;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setLeagueInSeason(Set<LeagueInSeasonEntity> leagueInSeason) {
+        this.leagueInSeason = leagueInSeason;
+    }
 }

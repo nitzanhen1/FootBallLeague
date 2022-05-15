@@ -14,7 +14,7 @@ public class DemoService {
 
     @RequestMapping("/test/{id}")
     public String getId(@PathVariable String id){
-        return demoDomain.findUser(id).getUserId();
+        return demoDomain.findUser(id).getId();
     }
 
     @RequestMapping("/test")

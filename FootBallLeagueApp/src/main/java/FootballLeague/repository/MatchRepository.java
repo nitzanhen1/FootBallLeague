@@ -1,11 +1,9 @@
 package FootballLeague.repository;
 
-import FootballLeague.entity.UserEntity;
+import FootballLeague.entity.MatchEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepository extends JpaRepository<UserEntity, String> {
-
-    UserEntity getOneById(String id);
+public interface MatchRepository extends JpaRepository<MatchEntity, String> {
 }

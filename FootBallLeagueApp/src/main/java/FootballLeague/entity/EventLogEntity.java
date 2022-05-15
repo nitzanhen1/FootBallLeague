@@ -21,4 +21,38 @@ public class EventLogEntity {
     private Set<EventEntity> events;
 
 
+    public EventLogEntity(String eventLogId, MatchEntity match, Set<EventEntity> events) {
+        this.eventLogId = eventLogId;
+        this.match = match;
+        this.events = events;
+
+
+    }
+
+    public EventLogEntity() {
+    }
+
+    public String getEventLogId() {
+        return eventLogId;
+    }
+
+    public MatchEntity getMatch() {
+        return match;
+    }
+
+    public Set<EventEntity> getEvents() {
+        return events;
+    }
+
+    public void setEventLogId(String eventLogId) {
+        this.eventLogId = eventLogId;
+    }
+
+    public void setMatch(MatchEntity match) {
+        this.match = match;
+    }
+
+    public void setEvents(Set<EventEntity> events) {
+        this.events = events;
+    }
 }

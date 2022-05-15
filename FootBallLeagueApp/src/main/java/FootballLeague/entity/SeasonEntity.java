@@ -17,4 +17,24 @@ public class SeasonEntity {
     public int getYear() {
         return year;
     }
+
+    public SeasonEntity(int year, Set<LeagueInSeasonEntity> leagueInSeason) {
+        this.year = year;
+        this.leagueInSeason = leagueInSeason;
+    }
+
+    public SeasonEntity() {
+    }
+
+    public Set<LeagueInSeasonEntity> getLeagueInSeason() {
+        return leagueInSeason;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    public void setLeagueInSeason(Set<LeagueInSeasonEntity> leagueInSeason) {
+        this.leagueInSeason = leagueInSeason;
+    }
 }

@@ -15,6 +15,6 @@ public class DemoDomain {
     }
 
     public UserEntity findUser(String id){
-        return userRepository.findOneById(id);
+        return userRepository.getOneById(id);
     }
 }

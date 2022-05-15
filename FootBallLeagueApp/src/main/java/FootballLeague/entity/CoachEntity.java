@@ -12,4 +12,48 @@ public class CoachEntity extends RoleEntity{
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "team_name", referencedColumnName = "teamName")
     private TeamEntity team;
+
+
+    public CoachEntity(String roleId, SubscriberEntity subscriber, String qualification, String roleInTeam, String personalPage, TeamEntity team) {
+        super(roleId, subscriber);
+        this.qualification = qualification;
+        this.roleInTeam = roleInTeam;
+        this.personalPage = personalPage;
+        this.team = team;
+    }
+
+    public CoachEntity() {
+    }
+
+    public void setQualification(String qualification) {
+        this.qualification = qualification;
+    }
+
+    public void setRoleInTeam(String roleInTeam) {
+        this.roleInTeam = roleInTeam;
+    }
+
+    public void setPersonalPage(String personalPage) {
+        this.personalPage = personalPage;
+    }
+
+    public void setTeam(TeamEntity team) {
+        this.team = team;
+    }
+
+    public String getQualification() {
+        return qualification;
+    }
+
+    public String getRoleInTeam() {
+        return roleInTeam;
+    }
+
+    public String getPersonalPage() {
+        return personalPage;
+    }
+
+    public TeamEntity getTeam() {
+        return team;
+    }
 }

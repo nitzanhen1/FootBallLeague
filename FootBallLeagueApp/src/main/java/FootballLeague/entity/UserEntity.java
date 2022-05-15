@@ -5,15 +5,23 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
+//@Table(name="user")
 public abstract class UserEntity {
     @Id
-    protected String userId;
+    private String id;
 
-    public String getUserId(){
-        return userId;
+    public UserEntity(String id) {
+        this.id = id;
     }
 
-    public void setUserId(String id){
-        this.userId = id;
+    public UserEntity() {
+    }
+
+    public String getId(){
+        return id;
+    }
+
+    public void setId(String id){
+        this.id = id;
     }
 }
