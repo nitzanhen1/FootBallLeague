@@ -3,6 +3,7 @@ package FootballLeague.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -22,8 +23,8 @@ public class TeamOwnerEntity extends RoleEntity{
     @OneToMany(mappedBy = "assignerTeamOwner")
     private Set<TeamManagerEntity> assignedTeamManager;
 
-    public TeamOwnerEntity(String roleId, SubscriberEntity subscriber, String assets, Set<TeamEntity> teams, TeamOwnerEntity assignerTeamOwner, Set<TeamOwnerEntity> assignedTeamOwners, Set<TeamManagerEntity> assignedTeamManager) {
-        super(roleId, subscriber);
+    public TeamOwnerEntity(String roleId, String name, SubscriberEntity subscriber, String assets, Set<TeamEntity> teams, TeamOwnerEntity assignerTeamOwner, Set<TeamOwnerEntity> assignedTeamOwners, Set<TeamManagerEntity> assignedTeamManager) {
+        super(roleId, name, subscriber);
         this.assets = assets;
         this.teams = teams;
         this.assignerTeamOwner = assignerTeamOwner;
@@ -31,7 +32,14 @@ public class TeamOwnerEntity extends RoleEntity{
         this.assignedTeamManager = assignedTeamManager;
     }
 
+    public TeamOwnerEntity(String roleId, String name, SubscriberEntity subscriber) {
+        super(roleId, name, subscriber);
+    }
+
     public TeamOwnerEntity() {
+        teams = new HashSet<>();
+        assignedTeamOwners= new HashSet<>();
+        assignedTeamManager = new HashSet<>();
     }
 
     public void setAssets(String assets) {

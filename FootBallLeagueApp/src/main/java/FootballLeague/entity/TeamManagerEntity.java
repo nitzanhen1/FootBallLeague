@@ -14,10 +14,14 @@ public class TeamManagerEntity extends RoleEntity{
     @JoinColumn(name = "assigner_team_owner_id", referencedColumnName = "roleId")
     private TeamOwnerEntity assignerTeamOwner;
 
-    public TeamManagerEntity(String roleId, SubscriberEntity subscriber, TeamEntity team, TeamOwnerEntity assignerTeamOwner) {
-        super(roleId, subscriber);
+    public TeamManagerEntity(String roleId, String name, SubscriberEntity subscriber, TeamEntity team, TeamOwnerEntity assignerTeamOwner) {
+        super(roleId, name, subscriber);
         this.team = team;
         this.assignerTeamOwner = assignerTeamOwner;
+    }
+
+    public TeamManagerEntity(String roleId, String name, SubscriberEntity subscriber) {
+        super(roleId, name, subscriber);
     }
 
     public TeamManagerEntity() {

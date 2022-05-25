@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.HashSet;
 import java.util.Set;
 
 
@@ -27,9 +28,11 @@ public class SubscriberEntity {
         this.userName = userName;
         this.password = password;
         this.loggedIn = loggedIn;
+        roles = new HashSet<>();
     }
 
     public SubscriberEntity() {
+        roles = new HashSet<>();
     }
 
     public String getUserName() {

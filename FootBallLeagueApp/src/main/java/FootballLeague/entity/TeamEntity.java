@@ -3,6 +3,7 @@ package FootballLeague.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -58,6 +59,13 @@ public class TeamEntity {
     }
 
     public TeamEntity() {
+        players = new HashSet<>();
+        teamManagers = new HashSet<>();
+        teamOwners = new HashSet<>();
+        awayMatches = new HashSet<>();
+        homeMatches = new HashSet<>();
+        coaches = new HashSet<>();
+        leagueInSeason = new HashSet<>();
     }
 
     public String getTeamName() {

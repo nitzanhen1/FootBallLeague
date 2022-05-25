@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Primary;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -18,12 +19,13 @@ public class LeagueInSeasonEntity {
     @JoinColumn(name = "season_year", referencedColumnName = "year")
     private SeasonEntity season;
     @Id
-    private String id = league.getName().concat(season.getYear()+""); //TODO: check insert
-    @ManyToMany
+    private String id;
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name="refereesToLeagueInSeason",
             joinColumns = @JoinColumn(name = "leagueInSeason"),
             inverseJoinColumns = @JoinColumn(name = "refereeId")
+
     )
     private Set<RefereeEntity> referees;
     @JsonIgnore
@@ -43,7 +45,7 @@ public class LeagueInSeasonEntity {
     public LeagueInSeasonEntity(LeagueEntity league, SeasonEntity season, String id, Set<RefereeEntity> referees, Set<MatchEntity> matches, Set<TeamEntity> teams, UnionRepresentativeEntity unionRepresentativeCreator) {
         this.league = league;
         this.season = season;
-        this.id = id;
+        this.id = league.getName().concat(season.getYear()+"");
         this.referees = referees;
         this.matches = matches;
         this.teams = teams;
@@ -51,6 +53,9 @@ public class LeagueInSeasonEntity {
     }
 
     public LeagueInSeasonEntity() {
+        referees = new HashSet<>();
+        matches = new HashSet<>();
+        teams = new HashSet<>();
     }
 
     public void setLeague(LeagueEntity league) {
@@ -107,6 +112,11 @@ public class LeagueInSeasonEntity {
 
     public UnionRepresentativeEntity getUnionRepresentativeCreator() {
         return unionRepresentativeCreator;
+    }
+
+    public void removeReferee(RefereeEntity refereeEntity){
+        this.getReferees().remove(refereeEntity);
+        refereeEntity.getLeagueInSeason().remove(this);
     }
 }
 

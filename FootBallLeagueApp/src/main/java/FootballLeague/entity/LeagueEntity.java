@@ -3,6 +3,7 @@ package FootballLeague.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -25,6 +26,7 @@ public class LeagueEntity {
     }
 
     public LeagueEntity() {
+        leagueInSeason = new HashSet<>();
     }
 
     public Set<LeagueInSeasonEntity> getLeagueInSeason() {

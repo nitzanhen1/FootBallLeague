@@ -1,7 +1,9 @@
 package FootballLeague.entity;
+
 import javax.persistence.*;
-import java.sql.Time;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -10,8 +12,8 @@ public class MatchEntity {
 
     @Id
     private String matchId;
-    private Date date;
-    private Time time;
+    private LocalDate date;
+    private LocalTime time;
     private int homeTeamScore;
     private int awayTeamScore;
     private String stadium;
@@ -38,7 +40,7 @@ public class MatchEntity {
     @JoinColumn(name = "league_in_season", referencedColumnName = "id")
     private LeagueInSeasonEntity leagueInSeason;
 
-    public MatchEntity(String matchId, Date date, Time time, int homeTeamScore, int awayTeamScore, String stadium, EventLogEntity eventLog, RefereeEntity mainReferee, Set<RefereeEntity> assistantReferees, TeamEntity homeTeam, TeamEntity awayTeam, LeagueInSeasonEntity leagueInSeason) {
+    public MatchEntity(String matchId, LocalDate date, LocalTime time, int homeTeamScore, int awayTeamScore, String stadium, EventLogEntity eventLog, RefereeEntity mainReferee, Set<RefereeEntity> assistantReferees, TeamEntity homeTeam, TeamEntity awayTeam, LeagueInSeasonEntity leagueInSeason) {
         this.matchId = matchId;
         this.date = date;
         this.time = time;
@@ -54,6 +56,7 @@ public class MatchEntity {
     }
 
     public MatchEntity() {
+        assistantReferees = new HashSet<>();
     }
 
     public MatchEntity(TeamEntity homeTeam, TeamEntity awayTeam) {
@@ -65,11 +68,11 @@ public class MatchEntity {
         return matchId;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public Time getTime() {
+    public LocalTime getTime() {
         return time;
     }
 
@@ -113,11 +116,11 @@ public class MatchEntity {
         this.matchId = matchId;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
-    public void setTime(Time time) {
+    public void setTime(LocalTime time) {
         this.time = time;
     }
 

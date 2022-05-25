@@ -10,9 +10,7 @@ public class FanEntity extends RoleEntity{
     public FanEntity() {
     }
 
-    public FanEntity(String roleId, SubscriberEntity subscriber) {
-        super(roleId, subscriber);
+    public FanEntity(String roleId, String name, SubscriberEntity subscriber) {
+        super(roleId, name, subscriber);
     }
-
-
 }

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.context.annotation.Primary;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -25,11 +26,10 @@ public class EventLogEntity {
         this.eventLogId = eventLogId;
         this.match = match;
         this.events = events;
-
-
     }
 
     public EventLogEntity() {
+        events = new HashSet<>();
     }
 
     public String getEventLogId() {

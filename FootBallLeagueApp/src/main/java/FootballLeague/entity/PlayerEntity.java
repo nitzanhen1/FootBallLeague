@@ -1,56 +1,61 @@
 package FootballLeague.entity;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
 @Table(name="player")
 public class PlayerEntity extends RoleEntity{
 
-    private Date dateOfBirth;
-    private String Position;
-    private String personalPgae; //TODO: entity? class? String?
+    private LocalDate dateOfBirth;
+    private String position;
+    private String personalPage; //TODO: entity? class? String?
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "team_name", referencedColumnName = "teamName")
     private TeamEntity team;
 
-    public PlayerEntity(String roleId, SubscriberEntity subscriber, Date dateOfBirth, String position, String personalPgae, TeamEntity team) {
-        super(roleId, subscriber);
+    public PlayerEntity(String roleId, String name, SubscriberEntity subscriber, LocalDate dateOfBirth, String position, String personalPage, TeamEntity team) {
+        super(roleId, name, subscriber);
         this.dateOfBirth = dateOfBirth;
-        Position = position;
-        this.personalPgae = personalPgae;
+        position = position;
+        this.personalPage = personalPage;
         this.team = team;
+    }
+
+    public PlayerEntity(String roleId, String name, SubscriberEntity subscriber) {
+        super(roleId, name, subscriber);
     }
 
     public PlayerEntity() {
     }
 
-    public Date getDateOfBirth() {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
     public String getPosition() {
-        return Position;
+        return position;
     }
 
-    public String getPersonalPgae() {
-        return personalPgae;
+    public String getPersonalPage() {
+        return personalPage;
     }
 
     public TeamEntity getTeam() {
         return team;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
+    public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
     public void setPosition(String position) {
-        Position = position;
+        position = position;
     }
 
-    public void setPersonalPgae(String personalPgae) {
-        this.personalPgae = personalPgae;
+    public void setPersonalPage(String personalPage) {
+        this.personalPage = personalPage;
     }
 
     public void setTeam(TeamEntity team) {

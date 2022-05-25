@@ -14,12 +14,16 @@ public class CoachEntity extends RoleEntity{
     private TeamEntity team;
 
 
-    public CoachEntity(String roleId, SubscriberEntity subscriber, String qualification, String roleInTeam, String personalPage, TeamEntity team) {
-        super(roleId, subscriber);
+    public CoachEntity(String roleId, String name, SubscriberEntity subscriber, String qualification, String roleInTeam, String personalPage, TeamEntity team) {
+        super(roleId, name, subscriber);
         this.qualification = qualification;
         this.roleInTeam = roleInTeam;
         this.personalPage = personalPage;
         this.team = team;
+    }
+
+    public CoachEntity(String roleId, String name, SubscriberEntity subscriber) {
+        super(roleId, name, subscriber);
     }
 
     public CoachEntity() {

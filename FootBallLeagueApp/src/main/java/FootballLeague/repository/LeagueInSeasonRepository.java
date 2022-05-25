@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface LeagueInSeasonRepository extends JpaRepository<LeagueInSeasonEntity, String> {
+    LeagueInSeasonEntity getOneById(String lis);
 }

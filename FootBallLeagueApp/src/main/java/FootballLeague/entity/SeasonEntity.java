@@ -2,6 +2,7 @@ package FootballLeague.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -9,28 +10,29 @@ import java.util.Set;
 public class SeasonEntity {
 
     @Id
-    private int year;
+    private String year;
     @JsonIgnore
     @OneToMany(mappedBy = "season")
     private Set<LeagueInSeasonEntity> leagueInSeason;
 
-    public int getYear() {
+    public String getYear() {
         return year;
     }
 
-    public SeasonEntity(int year, Set<LeagueInSeasonEntity> leagueInSeason) {
+    public SeasonEntity(String year, Set<LeagueInSeasonEntity> leagueInSeason) {
         this.year = year;
         this.leagueInSeason = leagueInSeason;
     }
 
     public SeasonEntity() {
+        leagueInSeason = new HashSet<>();
     }
 
     public Set<LeagueInSeasonEntity> getLeagueInSeason() {
         return leagueInSeason;
     }
 
-    public void setYear(int year) {
+    public void setYear(String year) {
         this.year = year;
     }
 

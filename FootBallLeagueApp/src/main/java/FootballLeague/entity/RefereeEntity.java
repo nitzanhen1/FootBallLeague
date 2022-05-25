@@ -3,6 +3,7 @@ package FootballLeague.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -23,11 +24,14 @@ public class RefereeEntity extends RoleEntity{
     @OneToMany(mappedBy = "refereeCreator")
     private Set<EventEntity> events;
     @JsonIgnore
-    @ManyToMany(mappedBy = "referees")
+    @ManyToMany(
+            mappedBy = "referees",
+            fetch = FetchType.EAGER
+    )
     private Set<LeagueInSeasonEntity> leagueInSeason;
 
-    public RefereeEntity(String roleId, SubscriberEntity subscriber, String qualification, UnionRepresentativeEntity unionRepresentativeAssigner, Set<MatchEntity> matchesAsMainReferee, Set<MatchEntity> matchesAsAssistantReferee, Set<EventEntity> events, Set<LeagueInSeasonEntity> leagueInSeason) {
-        super(roleId, subscriber);
+    public RefereeEntity(String roleId, String name, SubscriberEntity subscriber, String qualification, UnionRepresentativeEntity unionRepresentativeAssigner, Set<MatchEntity> matchesAsMainReferee, Set<MatchEntity> matchesAsAssistantReferee, Set<EventEntity> events, Set<LeagueInSeasonEntity> leagueInSeason) {
+        super(roleId, name, subscriber);
         this.qualification = qualification;
         this.unionRepresentativeAssigner = unionRepresentativeAssigner;
         this.matchesAsMainReferee = matchesAsMainReferee;
@@ -36,7 +40,15 @@ public class RefereeEntity extends RoleEntity{
         this.leagueInSeason = leagueInSeason;
     }
 
+    public RefereeEntity(String roleId, String name, SubscriberEntity subscriber) {
+        super(roleId, name, subscriber);
+    }
+
     public RefereeEntity() {
+        matchesAsMainReferee = new HashSet<>();
+        matchesAsAssistantReferee = new HashSet<>();
+        events = new HashSet<>();
+        leagueInSeason = new HashSet<>();
     }
 
     public void setQualification(String qualification) {
@@ -63,6 +75,10 @@ public class RefereeEntity extends RoleEntity{
         this.leagueInSeason = leagueInSeason;
     }
 
+    public void addLeagueInSeason(LeagueInSeasonEntity leagueInSeasonEntity){
+        this.leagueInSeason.add(leagueInSeasonEntity);
+    }
+
     public String getQualification() {
         return qualification;
     }
@@ -85,5 +101,10 @@ public class RefereeEntity extends RoleEntity{
 
     public Set<LeagueInSeasonEntity> getLeagueInSeason() {
         return leagueInSeason;
+    }
+
+    public void removeLeagueInSEason(LeagueInSeasonEntity leagueInSeasonEntity){
+        this.getLeagueInSeason().remove(leagueInSeasonEntity);
+        leagueInSeasonEntity.getReferees().remove(this);
     }
 }

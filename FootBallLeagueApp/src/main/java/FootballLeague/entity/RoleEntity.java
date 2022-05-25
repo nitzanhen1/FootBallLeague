@@ -10,13 +10,16 @@ public abstract class RoleEntity {
     @Id
     protected String roleId;
 
+    protected String name;
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="userId", referencedColumnName = "userName")
     protected SubscriberEntity subscriber;
 
 
-    public RoleEntity(String roleId, SubscriberEntity subscriber) {
+    public RoleEntity(String roleId, String name, SubscriberEntity subscriber) {
         this.roleId = roleId;
+        this.name = name;
         this.subscriber = subscriber;
     }
 
