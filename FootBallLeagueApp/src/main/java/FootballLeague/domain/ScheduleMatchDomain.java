@@ -48,9 +48,11 @@ public class ScheduleMatchDomain {
             //leagueInSeason doesn't exist in the system
             throw new NoSuchElementException("league and season are not connected");
         List<MatchEntity> matchesInSeasonInLeagues = matchRepository.findAllByLeagueInSeason(lis);
+        if(matchesInSeasonInLeagues.size()==0)
+            throw new UnsupportedOperationException("no matches to schedule");
         List<RefereeEntity> refereeInSeasonInLeague = refereeRepository.findAllByLeagueInSeason(lis);
         if(refereeInSeasonInLeague.size()<4)
-            throw new UnsupportedOperationException("minimum 4 referees required to schedule games");
+            throw new UnsupportedOperationException("minimum 4 referees required to schedule match");
         int day =1;
         int year = Integer.parseInt(seasonId);
         for (MatchEntity matchEntity:matchesInSeasonInLeagues){

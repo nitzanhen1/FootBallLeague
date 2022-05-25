@@ -103,6 +103,24 @@ public class ScheduleMatchDomainUnitTest {
     }
 
     @Test
+    public void scheduleMatchesNoGamesToScheduleTest() {
+        //mocks
+        String leagueId = "German";
+        String seasonId = "2023";
+        String lis = leagueId.concat(seasonId);
+        LeagueInSeasonEntity mockedLeagueInSeasonEntity = getMockedLeagueInSeasonEntity(leagueId,seasonId);
+        List<MatchEntity> matchesInSeasonInLeagues = getMockedMatchesInLeagueInSeason(mockedLeagueInSeasonEntity);
+        List<RefereeEntity> refereeInSeasonInLeague = getMockedRefereesInLeagueInSeason(mockedLeagueInSeasonEntity,4);
+        when(leagueInSeasonRepository.getOneById(lis)).thenReturn(mockedLeagueInSeasonEntity);
+        when(matchRepository.findAllByLeagueInSeason(lis)).thenReturn(new ArrayList<>());
+        when(refereeRepository.findAllByLeagueInSeason(lis)).thenReturn(refereeInSeasonInLeague);
+
+        //tests
+        assertThatCode(() -> scheduleMatchDomain.scheduleMatches(leagueId,seasonId)).isInstanceOf(UnsupportedOperationException.class);
+        matchesInSeasonInLeagues.forEach(matchEntity -> verify(matchRepository, never()).save(matchEntity));
+    }
+
+    @Test
     public void scheduleMatchesNotEnoughRefereesTest() {
         //mocks
         String leagueId = "German";
@@ -153,14 +171,14 @@ public class ScheduleMatchDomainUnitTest {
 
     private List<MatchEntity> getMockedMatchesInLeagueInSeason(LeagueInSeasonEntity leagueInSeasonEntity) {
         TeamEntity team1 = new TeamEntity();
-        team1.setTeamName("team1");
-        team1.setHomeStadium("stadium1");
+        team1.setTeamName("team11");
+        team1.setHomeStadium("stadium11");
         TeamEntity team2 = new TeamEntity();
-        team2.setTeamName("team1");
-        team2.setHomeStadium("stadium1");
+        team2.setTeamName("team12");
+        team2.setHomeStadium("stadium12");
         TeamEntity team3 = new TeamEntity();
-        team3.setTeamName("team1");
-        team3.setHomeStadium("stadium1");
+        team3.setTeamName("team13");
+        team3.setHomeStadium("stadium13");
 
         MatchEntity matchEntity1 = new MatchEntity();
         matchEntity1.setMatchId("match1");

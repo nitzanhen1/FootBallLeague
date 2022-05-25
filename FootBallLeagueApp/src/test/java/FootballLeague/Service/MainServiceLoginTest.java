@@ -34,7 +34,7 @@ public class MainServiceLoginTest {
     @Test
     public void login() {
 
-        //succesful login
+        //successful login
         assertTrue(mainService.login("user10", "password10"));
 
         //invalid params

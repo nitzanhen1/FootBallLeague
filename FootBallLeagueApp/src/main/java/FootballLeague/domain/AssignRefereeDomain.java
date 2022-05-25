@@ -57,7 +57,7 @@ public class AssignRefereeDomain {
                         return false;
                     else
                         //referee already assigned to this another League this season;
-                        throw new UnsupportedOperationException("referee alreay assigned to another league in this season");
+                        throw new UnsupportedOperationException("referee already assigned to another league in this season");
                 }
             }
         }

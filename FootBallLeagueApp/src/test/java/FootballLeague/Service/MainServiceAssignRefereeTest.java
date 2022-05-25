@@ -6,9 +6,11 @@ import FootballLeague.entity.RefereeEntity;
 import FootballLeague.entity.SeasonEntity;
 import FootballLeague.repository.LeagueInSeasonRepository;
 import FootballLeague.repository.RefereeRepository;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -51,7 +53,7 @@ public class MainServiceAssignRefereeTest {
 
     @Test
     public void assignRefereeToLeague() {
-        //successful login
+        //successful assign referee
         assertTrue(mainService.assignRefereeToLeague(refereeId,leagueId,seasonId));
 
         //invalid params
@@ -67,6 +69,8 @@ public class MainServiceAssignRefereeTest {
         LeagueInSeasonEntity anotherLeagueInSeason = setUpLeagueInSeason("Belgian",seasonId);
         leagueInSeasonRepository.save(anotherLeagueInSeason);
         assertThatCode(() -> mainService.assignRefereeToLeague(refereeId,"Belgian",seasonId)).isInstanceOf(UnsupportedOperationException.class);
+
+        //TODO delete belgian league
 
         //referee already assigned to this leagueInSeason
         assertFalse(mainService.assignRefereeToLeague(refereeId,leagueId,seasonId));
@@ -89,8 +93,14 @@ public class MainServiceAssignRefereeTest {
         return leagueInSeasonEntity1;
     }
 
-    @AfterEach
+    @After
     public void end(){
+        //TODO delete
+        leagueInSeasonEntity.setSeason(null);
+        leagueInSeasonEntity.setLeague(null);
+        for(RefereeEntity refereeEntity: leagueInSeasonEntity.getReferees()) {
+            leagueInSeasonEntity.getReferees().remove(refereeEntity);
+        }
         leagueInSeasonRepository.deleteById(leagueId.concat(seasonId));
         refereeRepository.deleteById(refereeId);
     }
