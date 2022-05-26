@@ -48,8 +48,8 @@ public class ScheduleMatchDomainUnitTest {
         List<MatchEntity> matchesInSeasonInLeagues = getMockedMatchesInLeagueInSeason(mockedLeagueInSeasonEntity);
         List<RefereeEntity> refereeInSeasonInLeague = getMockedRefereesInLeagueInSeason(mockedLeagueInSeasonEntity,4);
         when(leagueInSeasonRepository.getOneById(lis)).thenReturn(mockedLeagueInSeasonEntity);
-        when(matchRepository.findAllByLeagueInSeason(lis)).thenReturn(matchesInSeasonInLeagues);
-        when(refereeRepository.findAllByLeagueInSeason(lis)).thenReturn(refereeInSeasonInLeague);
+        when(matchRepository.findAllByLeagueInSeason(mockedLeagueInSeasonEntity)).thenReturn(matchesInSeasonInLeagues);
+        when(refereeRepository.findAllByLeagueInSeason(mockedLeagueInSeasonEntity)).thenReturn(refereeInSeasonInLeague);
 
         //tests
         assertTrue(scheduleMatchDomain.scheduleMatches(leagueId,seasonId));
@@ -66,8 +66,8 @@ public class ScheduleMatchDomainUnitTest {
         List<MatchEntity> matchesInSeasonInLeagues = getMockedMatchesInLeagueInSeason(mockedLeagueInSeasonEntity);
         List<RefereeEntity> refereeInSeasonInLeague = getMockedRefereesInLeagueInSeason(mockedLeagueInSeasonEntity,4);
         when(leagueInSeasonRepository.getOneById(lis)).thenReturn(mockedLeagueInSeasonEntity);
-        when(matchRepository.findAllByLeagueInSeason(lis)).thenReturn(matchesInSeasonInLeagues);
-        when(refereeRepository.findAllByLeagueInSeason(lis)).thenReturn(refereeInSeasonInLeague);
+        when(matchRepository.findAllByLeagueInSeason(mockedLeagueInSeasonEntity)).thenReturn(matchesInSeasonInLeagues);
+        when(refereeRepository.findAllByLeagueInSeason(mockedLeagueInSeasonEntity)).thenReturn(refereeInSeasonInLeague);
 
         //tests
         assertThatCode(() -> scheduleMatchDomain.scheduleMatches(leagueId,seasonId)).doesNotThrowAnyException();
@@ -112,8 +112,8 @@ public class ScheduleMatchDomainUnitTest {
         List<MatchEntity> matchesInSeasonInLeagues = getMockedMatchesInLeagueInSeason(mockedLeagueInSeasonEntity);
         List<RefereeEntity> refereeInSeasonInLeague = getMockedRefereesInLeagueInSeason(mockedLeagueInSeasonEntity,4);
         when(leagueInSeasonRepository.getOneById(lis)).thenReturn(mockedLeagueInSeasonEntity);
-        when(matchRepository.findAllByLeagueInSeason(lis)).thenReturn(new ArrayList<>());
-        when(refereeRepository.findAllByLeagueInSeason(lis)).thenReturn(refereeInSeasonInLeague);
+        when(matchRepository.findAllByLeagueInSeason(mockedLeagueInSeasonEntity)).thenReturn(new ArrayList<>());
+        when(refereeRepository.findAllByLeagueInSeason(mockedLeagueInSeasonEntity)).thenReturn(refereeInSeasonInLeague);
 
         //tests
         assertThatCode(() -> scheduleMatchDomain.scheduleMatches(leagueId,seasonId)).isInstanceOf(UnsupportedOperationException.class);
@@ -130,8 +130,8 @@ public class ScheduleMatchDomainUnitTest {
         List<MatchEntity> matchesInSeasonInLeagues = getMockedMatchesInLeagueInSeason(mockedLeagueInSeasonEntity);
         List<RefereeEntity> refereeInSeasonInLeague = getMockedRefereesInLeagueInSeason(mockedLeagueInSeasonEntity, 3);
         when(leagueInSeasonRepository.getOneById(lis)).thenReturn(mockedLeagueInSeasonEntity);
-        when(matchRepository.findAllByLeagueInSeason(lis)).thenReturn(matchesInSeasonInLeagues);
-        when(refereeRepository.findAllByLeagueInSeason(lis)).thenReturn(refereeInSeasonInLeague);
+        when(matchRepository.findAllByLeagueInSeason(mockedLeagueInSeasonEntity)).thenReturn(matchesInSeasonInLeagues);
+        when(refereeRepository.findAllByLeagueInSeason(mockedLeagueInSeasonEntity)).thenReturn(refereeInSeasonInLeague);
 
         //tests
         assertThatCode(() -> scheduleMatchDomain.scheduleMatches(leagueId,seasonId)).isInstanceOf(UnsupportedOperationException.class);
@@ -149,8 +149,8 @@ public class ScheduleMatchDomainUnitTest {
         matchesInSeasonInLeagues.get(0).setAwayTeam(null);
         List<RefereeEntity> refereeInSeasonInLeague = getMockedRefereesInLeagueInSeason(mockedLeagueInSeasonEntity,4);
         when(leagueInSeasonRepository.getOneById(lis)).thenReturn(mockedLeagueInSeasonEntity);
-        when(matchRepository.findAllByLeagueInSeason(lis)).thenReturn(matchesInSeasonInLeagues);
-        when(refereeRepository.findAllByLeagueInSeason(lis)).thenReturn(refereeInSeasonInLeague);
+        when(matchRepository.findAllByLeagueInSeason(mockedLeagueInSeasonEntity)).thenReturn(matchesInSeasonInLeagues);
+        when(refereeRepository.findAllByLeagueInSeason(mockedLeagueInSeasonEntity)).thenReturn(refereeInSeasonInLeague);
 
         //tests
         assertThatCode(() -> scheduleMatchDomain.scheduleMatches(leagueId,seasonId)).isInstanceOf(UnsupportedOperationException.class);
@@ -164,6 +164,7 @@ public class ScheduleMatchDomainUnitTest {
             referee1 = new RefereeEntity();
             referee1.setRoleId("referee"+i);
             referee1.getLeagueInSeason().add(leagueInSeasonEntity);
+            leagueInSeasonEntity.getReferees().add(referee1);
             refereesInLeagueInSeason.add(referee1);
         }
         return refereesInLeagueInSeason;

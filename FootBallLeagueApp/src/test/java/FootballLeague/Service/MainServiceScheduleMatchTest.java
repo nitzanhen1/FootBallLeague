@@ -7,13 +7,14 @@ import FootballLeague.entity.RefereeEntity;
 import FootballLeague.entity.SeasonEntity;
 import FootballLeague.entity.TeamEntity;
 import FootballLeague.repository.LeagueInSeasonRepository;
+import FootballLeague.repository.LeagueRepository;
 import FootballLeague.repository.MatchRepository;
 import FootballLeague.repository.RefereeRepository;
+import FootballLeague.repository.SeasonRepository;
+import FootballLeague.repository.TeamRepository;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -46,29 +47,42 @@ public class MainServiceScheduleMatchTest {
     @Autowired
     LeagueInSeasonRepository leagueInSeasonRepository;
 
+    @Autowired
+    TeamRepository teamRepository;
 
-    private final String leagueId = "German";
-    private  final String seasonId = "2023";
+    @Autowired
+    private LeagueRepository leagueRepository;
+
+    @Autowired
+    SeasonRepository seasonRepository;
+
+
+    private final String leagueId = "French";
+    private  final String seasonId = "2024";
     private LeagueInSeasonEntity leagueInSeasonEntity;
     private List<MatchEntity> matchesInSeasonInLeagues;
-    private List<RefereeEntity> refereeInSeasonInLeague;
+    private List<RefereeEntity> refereeInSeasonInLeagues;
     private List<TeamEntity> teamsInMatches;
 
-    @BeforeEach
+    @Before
     public void init() {
         leagueInSeasonEntity = setUpLeagueInSeason(leagueId,seasonId);
         teamsInMatches = setUpTeamsInDB();
         matchesInSeasonInLeagues = setUpMatchesInDB(leagueInSeasonEntity, teamsInMatches);
-        refereeInSeasonInLeague = setUpReferees(leagueInSeasonEntity,4);
+        refereeInSeasonInLeagues = new ArrayList<>();
+        refereeInSeasonInLeagues.addAll(addReferees(leagueInSeasonEntity,3, 1));
 
         leagueInSeasonRepository.save(leagueInSeasonEntity);
-        //TODO save to team repo? if yes then create team repo
         matchRepository.saveAll(matchesInSeasonInLeagues);
-        refereeRepository.saveAll(refereeInSeasonInLeague);
+        refereeRepository.saveAll(refereeInSeasonInLeagues);
     }
 
     @Test
     public void scheduleMatches() {
+        //not enough referees to schedule the matches
+        assertThatCode(() -> mainService.scheduleMatches(leagueId,seasonId)).isInstanceOf(UnsupportedOperationException.class);
+
+        refereeInSeasonInLeagues.addAll(addReferees(leagueInSeasonEntity,1,4));
         //successful schedule games
         assertTrue(mainService.scheduleMatches(leagueId,seasonId));
 
@@ -76,41 +90,36 @@ public class MainServiceScheduleMatchTest {
         assertThatCode(() -> mainService.scheduleMatches(null,seasonId)).isInstanceOf(NullPointerException.class);
 
         //seasonInLeague doesnt exist in the system
-        assertThatCode(() -> mainService.scheduleMatches("Belgian",seasonId)).isInstanceOf(NoSuchElementException.class);
+        assertThatCode(() -> mainService.scheduleMatches("Israeli",seasonId)).isInstanceOf(NoSuchElementException.class);
 
         //no matches are connected to this leagueInSeason
-        LeagueInSeasonEntity anotherLeagueInSeason = setUpLeagueInSeason("Belgian",seasonId);
+        LeagueInSeasonEntity anotherLeagueInSeason = setUpLeagueInSeason("Israeli",seasonId);
         leagueInSeasonRepository.save(anotherLeagueInSeason);
-        assertThatCode(() -> mainService.scheduleMatches("Belgian",seasonId)).isInstanceOf(UnsupportedOperationException.class);
+        assertThatCode(() -> mainService.scheduleMatches("Israeli",seasonId)).isInstanceOf(UnsupportedOperationException.class);
+        anotherLeagueInSeason.setSeason(null);
+        anotherLeagueInSeason.setLeague(null);
+        leagueInSeasonRepository.delete(anotherLeagueInSeason);
+        leagueRepository.deleteById("Israeli");
 
-        //TODO delete belgian league
 
-        //not enough referees to schedule the matches
-        refereeInSeasonInLeague = setUpReferees(leagueInSeasonEntity,3);
-        assertThatCode(() -> mainService.scheduleMatches(leagueId,seasonId)).isInstanceOf(UnsupportedOperationException.class);
-
-        //one match doesn't have two teams- cannot schedule matches
-        //TODO test if this makes the chnge in the database
-        MatchEntity matchEntity = matchesInSeasonInLeagues.get(0);
-        matchEntity.setAwayTeam(null);
-        matchRepository.save(matchEntity);
-        assertThatCode(() -> mainService.scheduleMatches(leagueId,seasonId)).isInstanceOf(UnsupportedOperationException.class);
+//        //one match doesn't have two teams- cannot schedule matches
+//        //TODO test if this makes the chnge in the database
+//        MatchEntity matchEntity = matchesInSeasonInLeagues.get(0);
+//        matchEntity.setAwayTeam(null);
+//        matchRepository.save(matchEntity);
+//        assertThatCode(() -> mainService.scheduleMatches(leagueId,seasonId)).isInstanceOf(UnsupportedOperationException.class);
     }
 
-    @AfterEach
-    public void end() {
-        //TODO delete
-    }
-
-
-
-    private List<RefereeEntity> setUpReferees(LeagueInSeasonEntity leagueInSeasonEntity, int quantity) {
+    private List<RefereeEntity> addReferees(LeagueInSeasonEntity leagueInSeasonEntity, int quantity, int startId) {
         RefereeEntity referee1;
         List<RefereeEntity> refereesInLeagueInSeason = new ArrayList<>();
         for (int i = 1; i <= quantity; i++) {
             referee1 = new RefereeEntity();
-            referee1.setRoleId("referee1"+i);
+            referee1.setRoleId("referee1"+startId++);
             referee1.getLeagueInSeason().add(leagueInSeasonEntity);
+            leagueInSeasonEntity.getReferees().add(referee1);
+            refereeRepository.save(referee1);
+            leagueInSeasonRepository.save(leagueInSeasonEntity);
             refereesInLeagueInSeason.add(referee1);
         }
         return refereesInLeagueInSeason;
@@ -128,6 +137,9 @@ public class MainServiceScheduleMatchTest {
                     matchEntity.setHomeTeam(teamsInMatches.get(i));
                     matchEntity.setAwayTeam(teamsInMatches.get(j));
                     matchEntity.setLeagueInSeason(leagueInSeasonEntity);
+                    leagueInSeasonEntity.getMatches().add(matchEntity);
+                    matchRepository.save(matchEntity);
+                    leagueInSeasonRepository.save(leagueInSeasonEntity);
                     matchEntities.add(matchEntity);
                 }
             }
@@ -158,5 +170,39 @@ public class MainServiceScheduleMatchTest {
         leagueInSeasonEntity1.setLeague(leagueEntity);
         leagueInSeasonEntity1.setSeason(seasonEntity);
         return leagueInSeasonEntity1;
+    }
+
+    @After
+    public void end() {
+        leagueInSeasonEntity.setSeason(null);
+        leagueInSeasonEntity.setLeague(null);
+        leagueInSeasonEntity.getReferees().removeAll(leagueInSeasonEntity.getReferees());
+
+        leagueInSeasonEntity.getMatches().removeAll(leagueInSeasonEntity.getMatches());
+
+        for(RefereeEntity refereeEntity: refereeInSeasonInLeagues){
+            //many to many
+            refereeEntity.getLeagueInSeason().removeAll(refereeEntity.getLeagueInSeason());
+
+            refereeEntity.getMatchesAsAssistantReferee().removeAll(refereeEntity.getMatchesAsAssistantReferee());
+            refereeEntity.getMatchesAsMainReferee().removeAll(refereeEntity.getMatchesAsMainReferee());
+
+        }
+        for(MatchEntity matchEntity: matchesInSeasonInLeagues){
+            //many to one
+            matchEntity.setLeagueInSeason(null);
+            matchEntity.setMainReferee(null);
+            matchEntity.getAssistantReferees().removeAll(matchEntity.getAssistantReferees());
+            matchEntity.setHomeTeam(null);
+            matchEntity.setAwayTeam(null);
+        }
+
+        matchRepository.deleteAll(matchesInSeasonInLeagues);
+        leagueInSeasonRepository.delete(leagueInSeasonEntity);
+        refereeRepository.deleteAll(refereeInSeasonInLeagues);
+
+        teamRepository.deleteAll(teamsInMatches);
+        seasonRepository.deleteById(seasonId);
+        leagueRepository.deleteById(leagueId);
     }
 }

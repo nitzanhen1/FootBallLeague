@@ -23,7 +23,7 @@ public class MatchEntity {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "main_referee_id", referencedColumnName = "roleId")
     private RefereeEntity mainReferee;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name="assistant_referees_in_match",
             joinColumns = @JoinColumn(name = "matchId"),

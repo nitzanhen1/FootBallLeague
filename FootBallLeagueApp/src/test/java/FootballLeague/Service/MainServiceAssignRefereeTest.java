@@ -5,12 +5,12 @@ import FootballLeague.entity.LeagueInSeasonEntity;
 import FootballLeague.entity.RefereeEntity;
 import FootballLeague.entity.SeasonEntity;
 import FootballLeague.repository.LeagueInSeasonRepository;
+import FootballLeague.repository.LeagueRepository;
 import FootballLeague.repository.RefereeRepository;
+import FootballLeague.repository.SeasonRepository;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -35,6 +35,11 @@ public class MainServiceAssignRefereeTest {
 
     @Autowired
     private LeagueInSeasonRepository leagueInSeasonRepository;
+
+    @Autowired
+    private LeagueRepository leagueRepository;
+
+    @Autowired SeasonRepository seasonRepository;
 
     private RefereeEntity refereeEntity;
     private LeagueInSeasonEntity leagueInSeasonEntity;
@@ -69,8 +74,10 @@ public class MainServiceAssignRefereeTest {
         LeagueInSeasonEntity anotherLeagueInSeason = setUpLeagueInSeason("Belgian",seasonId);
         leagueInSeasonRepository.save(anotherLeagueInSeason);
         assertThatCode(() -> mainService.assignRefereeToLeague(refereeId,"Belgian",seasonId)).isInstanceOf(UnsupportedOperationException.class);
-
-        //TODO delete belgian league
+        anotherLeagueInSeason.setSeason(null);
+        anotherLeagueInSeason.setLeague(null);
+        leagueInSeasonRepository.delete(anotherLeagueInSeason);
+        leagueRepository.deleteById("Belgian");
 
         //referee already assigned to this leagueInSeason
         assertFalse(mainService.assignRefereeToLeague(refereeId,leagueId,seasonId));
@@ -95,13 +102,13 @@ public class MainServiceAssignRefereeTest {
 
     @After
     public void end(){
-        //TODO delete
         leagueInSeasonEntity.setSeason(null);
         leagueInSeasonEntity.setLeague(null);
-        for(RefereeEntity refereeEntity: leagueInSeasonEntity.getReferees()) {
-            leagueInSeasonEntity.getReferees().remove(refereeEntity);
-        }
-        leagueInSeasonRepository.deleteById(leagueId.concat(seasonId));
-        refereeRepository.deleteById(refereeId);
+        leagueInSeasonEntity.getReferees().removeAll(leagueInSeasonEntity.getReferees());
+        refereeEntity.getLeagueInSeason().removeAll(refereeEntity.getLeagueInSeason());
+        leagueInSeasonRepository.delete(leagueInSeasonEntity);
+        refereeRepository.delete(refereeEntity);
+        seasonRepository.deleteById(seasonId);
+        leagueRepository.deleteById(leagueId);
     }
 }

@@ -31,7 +31,7 @@ public class LeagueInSeasonEntity {
     @JsonIgnore
     @OneToMany(mappedBy = "leagueInSeason")
     private Set<MatchEntity> matches;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name="teamsToLeagueInSeason",
             joinColumns = @JoinColumn(name = "leagueInSeason"),

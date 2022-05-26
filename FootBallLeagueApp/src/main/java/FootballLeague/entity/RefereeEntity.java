@@ -15,10 +15,16 @@ public class RefereeEntity extends RoleEntity{
     @JoinColumn(name = "assigner_id", referencedColumnName = "roleId")
     private UnionRepresentativeEntity unionRepresentativeAssigner;
     @JsonIgnore
-    @OneToMany(mappedBy = "mainReferee")
+    @OneToMany(
+            mappedBy = "mainReferee",
+            fetch = FetchType.EAGER
+    )
     private Set<MatchEntity> matchesAsMainReferee;
     @JsonIgnore
-    @ManyToMany(mappedBy = "assistantReferees")
+    @ManyToMany(
+            mappedBy = "assistantReferees",
+            fetch = FetchType.EAGER
+    )
     private Set<MatchEntity> matchesAsAssistantReferee;
     @JsonIgnore
     @OneToMany(mappedBy = "refereeCreator")
