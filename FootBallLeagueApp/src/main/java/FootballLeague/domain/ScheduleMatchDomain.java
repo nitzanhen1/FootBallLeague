@@ -8,7 +8,6 @@ import FootballLeague.repository.MatchRepository;
 import FootballLeague.repository.RefereeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.HashSet;
@@ -29,14 +28,6 @@ public class ScheduleMatchDomain {
     @Autowired
     RefereeRepository refereeRepository;
 
-    //params: season & league ids- validate
-
-    //game repo- find all games by league & season
-    //referee repo- find all referee in league & season
-    //adding date, location, hour
-    //game repo- save all
-    //stadium is home stadium
-
     public boolean scheduleMatches(String leagueId, String seasonId){
         if(leagueId == null || seasonId == null)
             //invalid params
@@ -55,13 +46,34 @@ public class ScheduleMatchDomain {
             throw new UnsupportedOperationException("minimum 4 referees required to schedule match");
         int day =1;
         int year = Integer.parseInt(seasonId);
+        Random random = new Random();
+        Set<Integer> indexes;
+        RefereeEntity refereeEntity;
+        int counter = 0, index;
         for (MatchEntity matchEntity:matchesInSeasonInLeagues){
-            if(matchEntity.getHomeTeam()==null ||matchEntity.getAwayTeam()==null)
-                throw new UnsupportedOperationException("match should have home and away teams prior to schedule games");
             matchEntity.setStadium(matchEntity.getHomeTeam().getHomeStadium());
             matchEntity.setDate(LocalDate.of(year,8,day++));
             matchEntity.setTime(LocalTime.of(20,00));
-            setReferees(matchEntity, refereeInSeasonInLeague);
+            //setReferees(matchEntity, refereeInSeasonInLeague);
+
+            indexes = new HashSet<>();
+            counter = 0;
+            while(counter<4){
+                index = random.nextInt(refereeInSeasonInLeague.size());
+                if(indexes.contains(index))
+                    continue;
+                refereeEntity = refereeInSeasonInLeague.get(index);
+                if(indexes.isEmpty()){// assign main referee
+                    matchEntity.setMainReferee(refereeEntity);
+                    refereeEntity.getMatchesAsMainReferee().add(matchEntity);
+                }
+                else{//assign 3 assistant referees
+                    matchEntity.getAssistantReferees().add(refereeEntity);
+                    refereeEntity.getMatchesAsAssistantReferee().add(matchEntity);
+                }
+                indexes.add(index);
+                counter++;
+            }
         }
 
         //save changes to the DB
@@ -71,28 +83,5 @@ public class ScheduleMatchDomain {
             refereeRepository.saveAll(matchEntity.getAssistantReferees());
         }
         return true;
-    }
-
-    private void setReferees(MatchEntity matchEntity, List<RefereeEntity> refereeInSeasonInLeague) {
-        Random random = new Random();
-        Set<Integer> indexes = new HashSet<>();
-        int counter = 0, index;
-        RefereeEntity refereeEntity;
-        while(counter<4){
-            index = random.nextInt(refereeInSeasonInLeague.size());
-            if(indexes.contains(index))
-                continue;
-            refereeEntity = refereeInSeasonInLeague.get(index);
-            if(indexes.isEmpty()){// assign main referee
-                matchEntity.setMainReferee(refereeEntity);
-                refereeEntity.getMatchesAsMainReferee().add(matchEntity);
-            }
-            else{//assign 3 assistant referees
-                matchEntity.getAssistantReferees().add(refereeEntity);
-                refereeEntity.getMatchesAsAssistantReferee().add(matchEntity);
-            }
-            indexes.add(index);
-            counter++;
-        }
     }
 }

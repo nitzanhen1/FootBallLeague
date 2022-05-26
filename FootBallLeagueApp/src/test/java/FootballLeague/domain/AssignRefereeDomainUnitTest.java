@@ -140,10 +140,6 @@ public class AssignRefereeDomainUnitTest {
         verify(leagueInSeasonRepository, never()).save(mockedLeagueInSeasonEntity);
     }
 
-    //TODO add system test for referee
-    //TODO logic for schedule and all of tests
-    //TODO integration tests for all logic
-
     @Test
     public void refereeAlreadyAssignedToAnotherLeagueInThisSeasonTest() {
         //mocks

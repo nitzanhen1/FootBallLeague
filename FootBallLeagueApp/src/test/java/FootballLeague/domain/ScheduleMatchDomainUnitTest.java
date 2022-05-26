@@ -138,25 +138,6 @@ public class ScheduleMatchDomainUnitTest {
         matchesInSeasonInLeagues.forEach(matchEntity -> verify(matchRepository, never()).save(matchEntity));
     }
 
-    @Test
-    public void scheduleMatchesNoTwoTeamsPerMatchTest() {
-        //mocks
-        String leagueId = "German";
-        String seasonId = "2023";
-        String lis = leagueId.concat(seasonId);
-        LeagueInSeasonEntity mockedLeagueInSeasonEntity = getMockedLeagueInSeasonEntity(leagueId,seasonId);
-        List<MatchEntity> matchesInSeasonInLeagues = getMockedMatchesInLeagueInSeason(mockedLeagueInSeasonEntity);
-        matchesInSeasonInLeagues.get(0).setAwayTeam(null);
-        List<RefereeEntity> refereeInSeasonInLeague = getMockedRefereesInLeagueInSeason(mockedLeagueInSeasonEntity,4);
-        when(leagueInSeasonRepository.getOneById(lis)).thenReturn(mockedLeagueInSeasonEntity);
-        when(matchRepository.findAllByLeagueInSeason(mockedLeagueInSeasonEntity)).thenReturn(matchesInSeasonInLeagues);
-        when(refereeRepository.findAllByLeagueInSeason(mockedLeagueInSeasonEntity)).thenReturn(refereeInSeasonInLeague);
-
-        //tests
-        assertThatCode(() -> scheduleMatchDomain.scheduleMatches(leagueId,seasonId)).isInstanceOf(UnsupportedOperationException.class);
-        matchesInSeasonInLeagues.forEach(matchEntity -> verify(matchRepository, never()).save(matchEntity));
-    }
-
     private List<RefereeEntity> getMockedRefereesInLeagueInSeason(LeagueInSeasonEntity leagueInSeasonEntity, int quantity) {
         RefereeEntity referee1;
         List<RefereeEntity> refereesInLeagueInSeason = new ArrayList<>();

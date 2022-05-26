@@ -13,7 +13,7 @@ public class TeamEntity {
     private String teamName;
     private boolean active;
     private String homeStadium;
-    private String personalPage; //TODO: entity? class? String?
+    private String personalPage;
     @JsonIgnore
     @OneToMany(mappedBy = "team")
     private Set<PlayerEntity> players;

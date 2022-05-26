@@ -100,15 +100,7 @@ public class MainServiceScheduleMatchTest {
         anotherLeagueInSeason.setLeague(null);
         leagueInSeasonRepository.delete(anotherLeagueInSeason);
         leagueRepository.deleteById("Israeli");
-
-
-//        //one match doesn't have two teams- cannot schedule matches
-//        //TODO test if this makes the chnge in the database
-//        MatchEntity matchEntity = matchesInSeasonInLeagues.get(0);
-//        matchEntity.setAwayTeam(null);
-//        matchRepository.save(matchEntity);
-//        assertThatCode(() -> mainService.scheduleMatches(leagueId,seasonId)).isInstanceOf(UnsupportedOperationException.class);
-    }
+ }
 
     private List<RefereeEntity> addReferees(LeagueInSeasonEntity leagueInSeasonEntity, int quantity, int startId) {
         RefereeEntity referee1;

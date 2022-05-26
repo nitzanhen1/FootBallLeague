@@ -9,7 +9,7 @@ import java.util.Set;
 @Entity
 @Table(name="teamOwner")
 public class TeamOwnerEntity extends RoleEntity{
-    private String assets; //TODO: need to be list but can't if not entity
+    private String assets;
     @JsonIgnore
     @ManyToMany(mappedBy = "teamOwners")
     private Set<TeamEntity> teams;

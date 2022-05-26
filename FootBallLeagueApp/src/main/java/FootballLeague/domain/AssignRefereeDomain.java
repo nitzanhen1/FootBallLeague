@@ -1,14 +1,11 @@
 package FootballLeague.domain;
 
-
 import FootballLeague.entity.LeagueInSeasonEntity;
 import FootballLeague.entity.RefereeEntity;
 import FootballLeague.repository.LeagueInSeasonRepository;
 import FootballLeague.repository.RefereeRepository;
-import org.springframework.beans.InvalidPropertyException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.NoSuchElementException;
 import java.util.Set;
 
@@ -20,17 +17,6 @@ public class AssignRefereeDomain {
 
     @Autowired
     LeagueInSeasonRepository leagueInSeasonRepository;
-
-    //params- league, season, referees id
-    //league-season repo - find by params
-    //referee repo - find by param
-    //update league-season - add referee
-    //update referee - add league-season
-    //save table changes
-
-    //test - (1) if league-season exists (2) if referee exists
-    // (3) see if referee already assigned to this league
-    // (4) see if referee already assigned to another league
 
     public boolean assignReferee(String refereeId, String leagueId, String seasonId){
         if(refereeId == null || leagueId == null || seasonId == null)
@@ -61,16 +47,12 @@ public class AssignRefereeDomain {
                 }
             }
         }
-        return save(refereeEntity,leagueInSeasonEntity);
         //referee successfully assigned to this League and Season
-    }
-
-    private boolean save(RefereeEntity refereeEntity, LeagueInSeasonEntity leagueInSeasonEntity){
         refereeEntity.getLeagueInSeason().add(leagueInSeasonEntity);
         leagueInSeasonEntity.getReferees().add(refereeEntity);
         refereeRepository.save(refereeEntity);
         leagueInSeasonRepository.save(leagueInSeasonEntity);
         return true;
-        //TODO see if save twice is unnecessary
+
     }
 }

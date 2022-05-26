@@ -8,7 +8,7 @@ public class CoachEntity extends RoleEntity{
 
     private String qualification;
     private String roleInTeam;
-    private String personalPage; //TODO: entity? class? String?
+    private String personalPage;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "team_name", referencedColumnName = "teamName")
     private TeamEntity team;
